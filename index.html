@@ -77,10 +77,9 @@ with st.sidebar:
 
     # Set the default country to be EU27
     default_index = 0
-    if 'EU27' in all_countries:
-        default_index = all_countries.index('EU27')
+    if 'DK' in all_countries:
+        default_index = all_countries.index('DK')
     selected_country = st.selectbox("Select a country:", all_countries, index=default_index, format_func=format_country_name)
-
     selected_year = st.selectbox("Select a year", [2030, 2040, 2050], index=2)
 
     focus = st.radio("What is the focus of the analysis?",
@@ -551,7 +550,6 @@ def format_country_name(code):
 @st.cache_data
 def load_transport_data(filepath):
     df = pd.read_csv(filepath)
-    st.write("Loaded transport CSV columns:", list(df.columns))
     df['Year'] = df['Year'].astype(int)
     return df
 
